@@ -1,0 +1,31 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  text-align: center;
+}
+
+#word {
+  font-size: 40px;
+  text-align: center;
+}
+
+#input {
+  display: none;
+}
+
+#guess, #guessText {
+  font-size: 20px;
+}
+
+#title {
+  background-color: lightgrey;
+  border-radius: 10px;
+}
+
+#day {
+  font-size: 12px;
+  font-weight: narrow;
+}

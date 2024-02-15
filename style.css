@@ -7,25 +7,14 @@ body {
   text-align: center;
 }
 
-#word {
-  font-size: 40px;
-  text-align: center;
-}
-
-#input {
-  display: none;
-}
-
-#guess, #guessText {
-  font-size: 20px;
-}
-
-#title {
+.game {
   background-color: lightgrey;
   border-radius: 10px;
+  padding: 4px 0px 12px 0px;
+  text-decoration: none;
+  color: black;
 }
 
-#day {
-  font-size: 12px;
-  font-weight: narrow;
+a {
+  text-decoration: none;
 }
