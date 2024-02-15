@@ -6,6 +6,7 @@ const guessE = document.getElementById("guess")
 const guessText = document.getElementById("guessText")
 const attemptsE = document.getElementById("attempts")
 const dayE = document.getElementById("day")
+const submitE = document.getElementById("submit")
 
 var seed = 1;
 function random() {
@@ -50,10 +51,11 @@ guessE.addEventListener("input", (e) => {
   })
 })
 
-guessE.addEventListener("change", (e) => {
-  matchCorrectLetters(e.target.value)
+submitE.addEventListener("submit", (e) => {
+  e.preventDefault()
+  matchCorrectLetters(guessE.value)
   attemptsE.innerHTML = Number(attemptsE.innerHTML) + 1
-  if (e.target.value == sentence) {
+  if (guessE.value == sentence) {
     inputE.value = "Correct"
     inputE.style.backgroundColor = "green"
     inputE.disabled = false

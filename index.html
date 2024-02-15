@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Unscrambled</title>
-  <meta name="description" content="Unscrambled. Unscramble letters to solve phrases in this puzzling word game" />
+  <meta name="description" content="Unscrambled. Unscramble letters to solve common phrases in this puzzling word game." />
   <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -19,14 +19,17 @@
     
   </header>
   <div id="word"></div>
-  <input id="input" type="text" name="input" value="" />
+  <input id="input" type="submit" name="input" value="" />
   <span id="attempts" >0 </span>
   <span>Attempts</span>
   <br></br>
   <div id="guessText"></div>
-  
-  <input id="guess" type="text" name="guess" placeholder="Enter your guess" value="" />
 
+  <form id="submit">
+    <input id="guess" type="text" name="guess" placeholder="Enter your guess" value="" />
+  </form>
+
+    
   <script src="phrases.js">   
   </script>
   
