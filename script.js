@@ -32,10 +32,13 @@ guessE.addEventListener("input", (e) => {
   Array.from(wordE.children).forEach(child => {
     child.used = false
     child.style.color = "black"
+    child.style.textDecoration = "none"
   })
   
-  string.split("").forEach((letter) => {
+  string.split("").forEach((letter, index) => {
      var match = false
+    var child = Array.from(wordE.children)[index]
+    if (child) child.style.textDecoration = 'underline'
     Array.from(wordE.children).forEach((child) => {
       if (child.used || match) return
       if (child.innerHTML == letter) {
