@@ -7,4 +7,4 @@ todo:
 
  show all previous guesses below input box
 
- 
+ fix psueso random to be random based off the day
