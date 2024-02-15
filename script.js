@@ -1,4 +1,5 @@
 var sentence = "test"
+var scrambled = []
 const wordE = document.getElementById("word")
 const inputE = document.getElementById("input")
 const guessE = document.getElementById("guess")
@@ -24,6 +25,27 @@ function getTodaysPhrase() {
   var phrase = commonPhrases[diffDays]
   setPhrase(phrase)
 }
+
+guessE.addEventListener("input", (e) => {
+  var string = e.target.value
+
+  Array.from(wordE.children).forEach(child => {
+    child.used = false
+    child.style.color = "black"
+  })
+  
+  string.split("").forEach((letter) => {
+     var match = false
+    Array.from(wordE.children).forEach((child) => {
+      if (child.used || match) return
+      if (child.innerHTML == letter) {
+        child.used = true
+        child.style.color = "lightgrey"
+        match = true
+      }
+    })
+  })
+})
 
 guessE.addEventListener("change", (e) => {
   matchCorrectLetters(e.target.value)
@@ -86,7 +108,17 @@ function setPhrase(phrase) {
   spaceIndexes.forEach((index) => {
     final.splice(index, 0, ' ')
   });
-  wordE.innerHTML = final.join("");
+  scrambled = final
+  phraseToSpan(final)
+  //wordE.innerHTML = final.join("");
+}
+
+function phraseToSpan(phrase) {
+  phrase.forEach(char => {
+    var span = document.createElement("span")
+    span.innerHTML = char
+    wordE.appendChild(span)
+  })
 }
 
 function shuffle(word) {
