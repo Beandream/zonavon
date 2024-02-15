@@ -5,6 +5,12 @@ const guessE = document.getElementById("guess")
 const guessText = document.getElementById("guessText")
 const attemptsE = document.getElementById("attempts")
 
+var seed = 1;
+function random() {
+  var x = Math.sin(seed++) * 10000;
+  return x - Math.floor(x);
+}
+
 getTodaysPhrase()
 
 function getTodaysPhrase() {
@@ -82,6 +88,6 @@ function setPhrase(phrase) {
 }
 
 function shuffle(word) {
-  var shuffledWord = word.split('').sort(function() { return 0.5 - Math.random() }).join('');
+  var shuffledWord = word.split('').sort(function() { return 0.5 - random() }).join('');
   return shuffledWord;
 }
