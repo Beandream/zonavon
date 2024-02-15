@@ -19,3 +19,13 @@ body {
 #guess, #guessText {
   font-size: 20px;
 }
+
+#title {
+  background-color: lightgrey;
+  border-radius: 10px;
+}
+
+#day {
+  font-size: 12px;
+  font-weight: narrow;
+}

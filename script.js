@@ -4,6 +4,7 @@ const inputE = document.getElementById("input")
 const guessE = document.getElementById("guess")
 const guessText = document.getElementById("guessText")
 const attemptsE = document.getElementById("attempts")
+const dayE = document.getElementById("day")
 
 var seed = 1;
 function random() {
@@ -19,6 +20,7 @@ function getTodaysPhrase() {
   const diffTime = (currentDate - targetDate);
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   console.log(diffDays);
+  dayE.innerHTML += diffDays;
   var phrase = commonPhrases[diffDays]
   setPhrase(phrase)
 }
