@@ -14,7 +14,19 @@ function random() {
   return x - Math.floor(x);
 }
 
+var attempts = [];
+
 getTodaysPhrase()
+var localAttempts = localStorage.getItem("attempts")
+localAttempts = JSON.parse(localAttempts)
+attempts = localAttempts ? localAttempts : []
+if (attempts.length > 0) {
+  attempts.forEach(attempt => {
+    matchCorrectLetters(attempt)
+  })
+}
+attemptsE.innerHTML = attempts.length
+
 
 function getTodaysPhrase() {
   const currentDate = new Date();
@@ -23,8 +35,17 @@ function getTodaysPhrase() {
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   console.log(diffDays);
   dayE.innerHTML += diffDays;
+  resetLocalStorage(diffDays)
   var phrase = commonPhrases[diffDays]
   setPhrase(phrase)
+}
+
+function resetLocalStorage(dayId) {
+  var storedDay = localStorage.getItem("day")
+  if (storedDay != dayId) {
+    localStorage.setItem("attempts", JSON.stringify([]))
+  }
+  localStorage.setItem("day", dayId)
 }
 
 guessE.addEventListener("input", (e) => {
@@ -54,7 +75,10 @@ guessE.addEventListener("input", (e) => {
 submitE.addEventListener("submit", (e) => {
   e.preventDefault()
   matchCorrectLetters(guessE.value)
-  attemptsE.innerHTML = Number(attemptsE.innerHTML) + 1
+  console.log(typeof(attempts))
+  attempts.push(guessE.value)
+  attemptsE.innerHTML = attempts.length
+  localStorage.setItem("attempts", JSON.stringify(attempts))
   if (guessE.value == sentence) {
     inputE.value = "Correct"
     inputE.style.backgroundColor = "green"
@@ -76,16 +100,20 @@ function matchCorrectLetters(guess) {
     }
   }
 
-  guessText.innerHTML = ""
+  var block = document.createElement("div")
+  guessText.insertBefore(block, guessText.firstChild)
 
+
+  
   sentence.split("").forEach((letter, index) => {
     var span = document.createElement("span")
     span.innerHTML = guess[index] ? guess[index] : "_"
     span.innerHTML = (span.innerHTML == " ") ? '_' : span.innerHTML
     span.innerHTML = (letter == ' ' && span.innerHTML == '_') ? ' ' : span.innerHTML
     span.style.color = correctLetters[index] ? "green" : "red"
-    guessText.appendChild(span)
+    block.appendChild(span)
   })
+
 }
 
 
