@@ -1,0 +1,43 @@
+:root {
+  --bg-color: #ffffff;
+  --mg-color: #e6e6e6;
+  --fg-color: #ffffff;
+  --fg-color-hover: #e0e0e0;
+  --text-color: #000000;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #292929;
+    --mg-color: #383838;
+    --fg-color: #474747;
+    --fg-color-hover: #5c5c5c;
+    --text-color: #ffffff;
+  }
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  text-align: center;
+}
+
+.background {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+
+}
+
+.middleground {
+  background-color: var(--mg-color);
+  color: var(--text-color);
+
+}
+
+.foreground {
+  background-color: var(--fg-color);
+  color: var(--text-color);
+}

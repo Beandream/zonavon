@@ -1,20 +1,37 @@
-html {
-  height: 100%;
-  width: 100%;
-}
-
-body {
-  text-align: center;
-}
-
 .game {
-  background-color: lightgrey;
+  margin: auto;
   border-radius: 10px;
-  padding: 4px 0px 12px 0px;
-  text-decoration: none;
-  color: black;
+  padding: 10px;
+  padding-bottom: 4px;
+  padding-top: 0px;
+  max-width: 30rem;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.title {
+  margin: auto;
+  margin-bottom: 1rem;
+  max-width: 35rem;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 2px, rgba(0, 0, 0, 0.3) 0px 1px 2px -1px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  padding: 8px;
+}
+
+.gameTitle {
+  padding-top: 10px;
+  padding-bottom: 0px;
+  margin: 0;
+}
+
+p {
+  margin: 0.5rem;
 }
 
 a {
+  display: inline-block;
   text-decoration: none;
+}
+
+.game:hover {
+  background-color: var(--fg-color-hover);
 }

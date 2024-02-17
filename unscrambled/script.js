@@ -1,7 +1,6 @@
 var sentence = "test"
 var scrambled = []
-const wordE = document.getElementById("word")
-const inputE = document.getElementById("input")
+const phraseE = document.getElementById("phrase")
 const guessE = document.getElementById("guess")
 const guessText = document.getElementById("guessText")
 const attemptsE = document.getElementById("attempts")
@@ -33,7 +32,6 @@ function getTodaysPhrase() {
   const targetDate = new Date(2024, 1, 15);
   const diffTime = (currentDate - targetDate);
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  console.log(diffDays);
   dayE.innerHTML += diffDays;
   resetLocalStorage(diffDays)
   var phrase = commonPhrases[diffDays]
@@ -51,21 +49,21 @@ function resetLocalStorage(dayId) {
 guessE.addEventListener("input", (e) => {
   var string = e.target.value
 
-  Array.from(wordE.children).forEach(child => {
+  Array.from(phraseE.children).forEach(child => {
     child.used = false
-    child.style.color = "black"
+    child.classList.remove("usedLetter")
     child.style.textDecoration = "none"
   })
-  
+
   string.split("").forEach((letter, index) => {
-     var match = false
-    var child = Array.from(wordE.children)[index]
+    var match = false
+    var child = Array.from(phraseE.children)[index]
     if (child) child.style.textDecoration = 'underline'
-    Array.from(wordE.children).forEach((child) => {
+    Array.from(phraseE.children).forEach((child) => {
       if (child.used || match) return
       if (child.innerHTML == letter) {
         child.used = true
-        child.style.color = "lightgrey"
+        child.classList.add("usedLetter")
         match = true
       }
     })
@@ -75,19 +73,9 @@ guessE.addEventListener("input", (e) => {
 submitE.addEventListener("submit", (e) => {
   e.preventDefault()
   matchCorrectLetters(guessE.value)
-  console.log(typeof(attempts))
   attempts.push(guessE.value)
   attemptsE.innerHTML = attempts.length
   localStorage.setItem("attempts", JSON.stringify(attempts))
-  if (guessE.value == sentence) {
-    inputE.value = "Correct"
-    inputE.style.backgroundColor = "green"
-    inputE.disabled = false
-    guessE.disabled = true
-  } else {
-    inputE.style.backgroundColor = "red"
-    inputE.value = "Incorrect"
-  }
 })
 
 function matchCorrectLetters(guess) {
@@ -104,29 +92,20 @@ function matchCorrectLetters(guess) {
   guessText.insertBefore(block, guessText.firstChild)
 
 
-  
+
   sentence.split("").forEach((letter, index) => {
     var span = document.createElement("span")
     span.innerHTML = guess[index] ? guess[index] : "_"
     span.innerHTML = (span.innerHTML == " ") ? '_' : span.innerHTML
     span.innerHTML = (letter == ' ' && span.innerHTML == '_') ? ' ' : span.innerHTML
-    span.style.color = correctLetters[index] ? "green" : "red"
+    span.classList.add(correctLetters[index] ? "correctLetter" : "incorrectLetter")
     block.appendChild(span)
   })
 
 }
 
-
-
-inputE.addEventListener("change", (e) => {
-  setPhrase(e.target.value)
-})
-
 function setPhrase(phrase) {
   sentence = phrase;
-  inputE.value = "";
-  inputE.disabled = true;
-  inputE.style.backgroundColor = "white"
 
   var spaceIndexes = [];
   sentence.split("").forEach((char, index) => {
@@ -150,7 +129,7 @@ function phraseToSpan(phrase) {
   phrase.forEach(char => {
     var span = document.createElement("span")
     span.innerHTML = char
-    wordE.appendChild(span)
+    phraseE.appendChild(span)
   })
 }
 
