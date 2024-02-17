@@ -88,8 +88,12 @@ function applyPreferredColorScheme(scheme) {
         document.body.classList.toggle("lightmode");
       }
 
-    } else if (scheme === "dark") {
-      document.body.classList.toggle("darkmode");
+    } else{
+      if (scheme === "dark" && !document.body.classList.contains("darkmode")) {
+        document.body.classList.toggle("darkmode");
+      } else if (scheme === "light" && document.body.classList.contains("darkmode")) {
+        document.body.classList.toggle("darkmode");
+      }
     }
 
     
