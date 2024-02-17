@@ -25,6 +25,53 @@ body {
   text-align: center;
 }
 
+
+.header {
+  margin: auto;
+  margin-bottom: 1rem;
+  max-width: 35rem;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 2px, rgba(0, 0, 0, 0.3) 0px 1px 2px -1px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  padding: 8px;
+  position: relative;
+}
+
+.toggle {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: 10px;
+  display: table;
+  text-decoration: none;
+}
+
+.toggle * {
+  display: table-cell;
+  vertical-align: middle;
+  color: var(--text-color);
+  font-size: 32px;
+}
+
+#icon-sun {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: none;
+  padding-bottom: 0.5rem;
+  line-height: 0rem;
+}
+
+
+#icon-moon {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: none;
+  line-height: 0rem;
+}
+
+.title {
+  display: inline;
+}
+
 .background {
   background-color: var(--bg-color);
   color: var(--text-color);

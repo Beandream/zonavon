@@ -13,11 +13,15 @@
 </head>
 
 <body class="background">
-  <header>
-    <h1 id="title" class="title middleground">
+  <header class="header middleground">
+    <h1 id="title" class="title">
       Unscrambled
       <span id="day" class="day">day </span>
     </h1>
+    <a class="toggle" href="javascript:toggleColorScheme();">
+          <span id="icon-sun">☼</span>
+          <span id="icon-moon">☽</span>
+    </a>
   </header>
 
   <div id="phrase" class="phrase"></div>
@@ -36,7 +40,9 @@
   <script src="unscrambled/phrases.js">
   </script>
 
+  <script src="../darkmode.js"></script>
   <script src="unscrambled/script.js"></script>
+
 </body>
 
 </html>
