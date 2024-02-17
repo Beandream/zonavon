@@ -44,53 +44,64 @@ function toggleColorScheme(){
   if (scheme === "light"){
     newScheme = "dark";
   }
-
+  
   applyPreferredColorScheme(newScheme);
   savePreferredColorScheme(newScheme);
-
-
 }
 
 // Apply the chosen color scheme by traversing stylesheet rules, and applying a medium.
 function applyPreferredColorScheme(scheme) {
-    for (var s = 0; s < document.styleSheets.length; s++) {
+    // for (var s = 0; s < document.styleSheets.length; s++) {
 
-        for (var i = 0; i < document.styleSheets[s].cssRules.length; i++) {
-            rule = document.styleSheets[s].cssRules[i];
-
-
-            if (rule && rule.media && rule.media.mediaText.includes("prefers-color-scheme")) {
-
-                switch (scheme) {
-                    case "light":
-                        rule.media.appendMedium("original-prefers-color-scheme");
-                        if (rule.media.mediaText.includes("light")) rule.media.deleteMedium("(prefers-color-scheme: light)");
-                        if (rule.media.mediaText.includes("dark")) rule.media.deleteMedium("(prefers-color-scheme: dark)");
-                        break;
-                    case "dark":
-                        rule.media.appendMedium("(prefers-color-scheme: light)");
-                        rule.media.appendMedium("(prefers-color-scheme: dark)");
-                        if (rule.media.mediaText.includes("original")) rule.media.deleteMedium("original-prefers-color-scheme");
-                        break;
-                    default:
-                        rule.media.appendMedium("(prefers-color-scheme: dark)");
-                        if (rule.media.mediaText.includes("light")) rule.media.deleteMedium("(prefers-color-scheme: light)");
-                        if (rule.media.mediaText.includes("original")) rule.media.deleteMedium("original-prefers-color-scheme");
-                        break;
-                }
-            }
-        }
+    //   for (var i = 0; i < document.styleSheets[s].cssRules.length; i++) {
+    //     rule = document.styleSheets[s].cssRules[i];
 
 
+    //     if (rule && rule.media && rule.media.mediaText.includes("prefers-color-scheme")) {
+    //       switch (scheme) {
+    //         case "light":
+    //           rule.media.appendMedium("original-prefers-color-scheme");
+    //           if (rule.media.mediaText.includes("light")) rule.media.deleteMedium("(prefers-color-scheme: light)");
+    //           if (rule.media.mediaText.includes("dark")) rule.media.deleteMedium("(prefers-color-scheme: dark)");
+    //           break;
+    //         case "dark":
+    //           rule.media.appendMedium("(prefers-color-scheme: light)");
+    //           rule.media.appendMedium("(prefers-color-scheme: dark)");
+    //           if (rule.media.mediaText.includes("original")) rule.media.deleteMedium("original-prefers-color-scheme");
+    //           break;
+    //         default:
+    //           rule.media.appendMedium("(prefers-color-scheme: dark)");
+    //           if (rule.media.mediaText.includes("light")) rule.media.deleteMedium("(prefers-color-scheme: light)");
+    //           if (rule.media.mediaText.includes("original")) rule.media.deleteMedium("original-prefers-color-scheme");
+    //           break;
+    //       }
+    //     }
+    //   }
+
+
+    // }
+
+    if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+      if (scheme === "light" && !document.body.classList.contains("lightmode")) {
+        document.body.classList.toggle("lightmode");
+      } else if (scheme === "dark" && document.body.classList.contains("lightmode")) {
+        document.body.classList.toggle("lightmode");
+      }
+
+    } else if (scheme === "dark") {
+      document.body.classList.toggle("darkmode");
     }
 
+    
+  
     // Change the toggle button to be the opposite of the current scheme
     if (scheme === "dark") {
-        document.getElementById("icon-sun").style.display = 'table-cell';
-        document.getElementById("icon-moon").style.display = 'none';
+      document.getElementById("icon-sun").style.display = 'table-cell';
+      document.getElementById("icon-moon").style.display = 'none';
     } else {
-        document.getElementById("icon-moon").style.display = 'table-cell';
-        document.getElementById("icon-sun").style.display = 'none';
+      document.getElementById("icon-moon").style.display = 'table-cell';
+      document.getElementById("icon-sun").style.display = 'none';
+      // document.body.classList.toggle("darkmode");
     }
 }
 

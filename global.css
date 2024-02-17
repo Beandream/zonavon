@@ -1,4 +1,4 @@
-:root {
+body {
   --bg-color: #ffffff;
   --mg-color: #e6e6e6;
   --fg-color: #ffffff;
@@ -6,14 +6,32 @@
   --text-color: #000000;
 }
 
+body.darkmode {
+  --bg-color: #292929;
+  --mg-color: #383838;
+  --fg-color: #474747;
+  --fg-color-hover: #5c5c5c;
+  --text-color: #fafafa;
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
+  body {
     --bg-color: #292929;
     --mg-color: #383838;
     --fg-color: #474747;
     --fg-color-hover: #5c5c5c;
-    --text-color: #ffffff;
+    --text-color: #fafafa;
   }
+  
+  body.lightmode {
+    --bg-color: #ffffff;
+    --mg-color: #e6e6e6;
+    --fg-color: #ffffff;
+    --fg-color-hover: #e0e0e0;
+    --text-color: #000000;
+  }
+  
+
 }
 
 html {
