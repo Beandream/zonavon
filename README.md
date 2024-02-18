@@ -11,9 +11,9 @@ todo:
 
  remember correct guess letters.
 
- darkmode.
+ DONE -- darkmode.
 
- warn users when they enter a letter that isn't even in the phrase.
+ DONE -- warn users when they enter a letter that isn't even in the phrase.
 
  track and display score history from previous days.
 

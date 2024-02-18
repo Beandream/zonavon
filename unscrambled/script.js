@@ -46,15 +46,32 @@ function resetLocalStorage(dayId) {
   localStorage.setItem("day", dayId)
 }
 
+function applyShake(element) {
+  element.classList.remove("shake")
+  void element.offsetWidth;
+  element.classList.add("shake")
+}
+
 guessE.addEventListener("input", (e) => {
   var string = e.target.value
+  var lastLetterMatch = false;
 
-  Array.from(phraseE.children).forEach(child => {
+  Array.from(phraseE.children).forEach((child, index) => {
     child.used = false
+    if (child.classList.contains("usedLetter")) {
+      lastPreviousLetterIndex = index
+    }
     child.classList.remove("usedLetter")
     child.style.textDecoration = "none"
+    if (child.innerHTML == string[string.length - 1]) {
+      lastLetterMatch = true;
+    }
   })
 
+  if (!lastLetterMatch && e.inputType === "insertText") {
+    applyShake(guessE);
+  }
+  
   string.split("").forEach((letter, index) => {
     var match = false
     var child = Array.from(phraseE.children)[index]
