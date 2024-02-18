@@ -1,5 +1,6 @@
 var sentence = "test"
 var scrambled = []
+var currentDay = 0;
 const phraseE = document.getElementById("phrase")
 const guessE = document.getElementById("guess")
 const guessText = document.getElementById("guessText")
@@ -16,26 +17,32 @@ function random() {
 var attempts = [];
 
 getTodaysPhrase()
-var localAttempts = localStorage.getItem("attempts")
-localAttempts = JSON.parse(localAttempts)
-attempts = localAttempts ? localAttempts : []
-if (attempts.length > 0) {
-  attempts.forEach(attempt => {
-    matchCorrectLetters(attempt)
-  })
+
+
+function getStorageAttempts() {
+  var localAttempts = localStorage.getItem("day" + currentDay)
+  localAttempts = JSON.parse(localAttempts)
+  attempts = localAttempts ? localAttempts : []
+  if (attempts.length > 0) {
+    attempts.forEach(attempt => {
+      matchCorrectLetters(attempt)
+    })
+  }
+  attemptsE.innerHTML = attempts.length
 }
-attemptsE.innerHTML = attempts.length
 
-
-function getTodaysPhrase() {
+function getTodaysPhrase(manualDate) {
   const currentDate = new Date();
   const targetDate = new Date(2024, 1, 15);
   const diffTime = (currentDate - targetDate);
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  dayE.innerHTML += diffDays;
-  resetLocalStorage(diffDays)
+  var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  if (manualDate < diffDays && manualDate > -1) diffDays = manualDate;
+  dayE.innerHTML = "day " + diffDays;
+  currentDay = diffDays;
+  // resetLocalStorage(diffDays)
   var phrase = commonPhrases[diffDays]
   setPhrase(phrase)
+  getStorageAttempts()
 }
 
 function resetLocalStorage(dayId) {
@@ -92,7 +99,7 @@ submitE.addEventListener("submit", (e) => {
   matchCorrectLetters(guessE.value)
   attempts.push(guessE.value)
   attemptsE.innerHTML = attempts.length
-  localStorage.setItem("attempts", JSON.stringify(attempts))
+  localStorage.setItem("day" + currentDay, JSON.stringify(attempts))
 })
 
 function matchCorrectLetters(guess) {
@@ -153,4 +160,14 @@ function phraseToSpan(phrase) {
 function shuffle(word) {
   var shuffledWord = word.split('').sort(function() { return 0.5 - random() }).join('');
   return shuffledWord;
+}
+
+function pickPreviousDay() {
+  phraseE.innerHTML = ""
+  attemptsE.innerHTML = "0"
+  guessText.innerHTML = ""
+  guessE.value = ""
+  attempts = [];
+  seed = 1;
+  getTodaysPhrase(currentDay - 1)
 }

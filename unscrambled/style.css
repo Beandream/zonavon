@@ -46,6 +46,11 @@
   font-weight: narrow;
 }
 
+.dayLink {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
 .usedLetter {
   color: var(--disabled-color);
 }
