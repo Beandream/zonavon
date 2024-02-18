@@ -4,6 +4,9 @@ body {
   --fg-color: #ffffff;
   --fg-color-hover: #e0e0e0;
   --text-color: #000000;
+  --disabled-color: #d2d2d2;
+  --incorrect-color: #ff0000;
+  --correct-color: #00a800;
 }
 
 body.darkmode {
@@ -12,6 +15,9 @@ body.darkmode {
   --fg-color: #474747;
   --fg-color-hover: #5c5c5c;
   --text-color: #fafafa;
+  --disabled-color: #474747;
+  --incorrect-color: #ff6666;
+  --correct-color: #7aff7a;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -21,6 +27,9 @@ body.darkmode {
     --fg-color: #474747;
     --fg-color-hover: #5c5c5c;
     --text-color: #fafafa;
+    --disabled-color: #474747;
+    --incorrect-color: #ff6666;
+    --correct-color: #7aff7a;
   }
   
   body.lightmode {
@@ -29,6 +38,9 @@ body.darkmode {
     --fg-color: #ffffff;
     --fg-color-hover: #e0e0e0;
     --text-color: #000000;
+    --disabled-color: #d2d2d2;
+    --incorrect-color: #ff0000;
+    --correct-color: #00a800;
   }
   
 

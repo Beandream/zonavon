@@ -1,17 +1,3 @@
-:root {
-  --disabled-color: #d2d2d2;
-  --incorrect-color: #ff0000;
-  --correct-color: #00a800;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --disabled-color: #474747;
-    --incorrect-color: #ff6666;
-    --correct-color: #7aff7a;
-  }
-}
-
 @keyframes shake {
  0% { transform: translateX(0) }
  25% { transform: translateX(3px) }
