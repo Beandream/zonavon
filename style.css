@@ -1,74 +1,68 @@
-.game {
+@keyframes shake {
+ 0% { transform: translateX(0) }
+ 25% { transform: translateX(3px) }
+ 50% { transform: translateX(-3px) }
+ 75% { transform: translateX(3px) }
+ 100% { transform: translateX(0) }
+}
+
+.shake {
+  animation: shake 0.1s;
+  animation-iteration-count: 1;
+}
+
+.phrase {
+  font-size: 40px;
+  text-align: center;
+  max-width: 40rem;
   margin: auto;
-  border-radius: 10px;
-  padding: 10px;
-  padding-bottom: 4px;
-  padding-top: 0px;
-  max-width: 30rem;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
-.header {
-  margin: auto;
-  margin-bottom: 1rem;
-  max-width: 35rem;
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 2px, rgba(0, 0, 0, 0.3) 0px 1px 2px -1px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-  padding: 8px;
-  position: relative;
-}
-
-.toggle {
-  position: absolute;
-  height: 100%;
-  top: 0;
-  right: 10px;
-  display: table;
-
-}
-
-.toggle * {
-  display: table-cell;
-  vertical-align: middle;
-  color: var(--text-color);
-  font-size: 32px;
-}
-
-#icon-sun {
-  width: 1.5rem;
-  height: 1.5rem;
+.input {
   display: none;
-  padding-bottom: 0.5rem;
-  line-height: 0rem;
 }
 
 
-#icon-moon {
-  width: 1.5rem;
-  height: 1.5rem;
-  display: none;
-  line-height: 0rem;
+.guess,
+.guessText {
+  font-size: 20px;
+  margin-top: 0.5rem;
 }
 
-.title {
-  display: inline;
+.day {
+  font-size: 12px;
+  font-weight: narrow;
 }
 
-.gameTitle {
-  padding-top: 10px;
-  padding-bottom: 0px;
-  margin: 0;
-}
-
-p {
-  margin: 0.5rem;
-}
-
-a {
-  display: inline-block;
+.dayLink {
   text-decoration: none;
+  color: var(--text-color);
 }
 
-.game:hover {
-  background-color: var(--fg-color-hover);
+.usedLetter {
+  color: var(--disabled-color);
+}
+
+.correctLetter {
+  color: var(--correct-color);
+}
+
+.hidden > div > span.correctLetter{
+  background-color: var(--correct-color);
+  display: inline-block;
+  border-radius: 2px;
+  width: 10px;
+  margin-top: 2px;
+}
+
+.incorrectLetter {
+  color: var(--incorrect-color);
+}
+
+.hidden > div > span.incorrectLetter {
+  background-color: var(--incorrect-color);
+  display: inline-block;
+  border-radius: 2px;
+  width: 10px;
+  margin-top: 2px;
 }

@@ -102,6 +102,10 @@ submitE.addEventListener("submit", (e) => {
   localStorage.setItem("day" + currentDay, JSON.stringify(attempts))
 })
 
+guessText.addEventListener("click", () => {
+  guessText.classList.toggle("hidden")
+})
+
 function matchCorrectLetters(guess) {
   let correctLetters = []
   for (let i = 0; i < guess.length; i++) {
