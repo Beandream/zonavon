@@ -1,1 +1,1 @@
-a blank project for creating new projects
+A fabric scaling tool. 

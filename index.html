@@ -4,22 +4,38 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>Zonavon</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="global.css" />
-
+  <title>Fabric Scaling Tool</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body class="background">
-  <header class="header middleground">
-    <h1 class="title">New Project</h1>
-    <a class="toggle" href="javascript:toggleColorScheme();">
-          <span id="icon-sun">☼</span>
-          <span id="icon-moon">☽</span>
-    </a>
-  </header>
+<body>
+  <h3>Fabric Scaling Tool.</h3>
+  <div id="rulers">
+    <div id="vertical-ruler"></div>
+    <div id="horizontal-ruler"></div>
+    <div id="output" src=""></div>
+  </div>
 
-  <script src="darkmode.js"></script>
+  <input type="number" onchange="changeScale()" value="3" id="width"/>
+  <input type="number" onchange="changeScale()" value="3" id="height"/>
+
+  <input type="file" onchange="displayImage()" />
+
+  <script>
+
+    function changeScale() {
+      width = document.getElementById("width");
+      height = document.getElementById("height");
+      document.documentElement.style.setProperty('--image-width', width.value + 'in');
+      document.documentElement.style.setProperty('--image-height', height.value + "in");
+    }
+    
+    function displayImage() {
+      var image = document.getElementById('output')
+      var url = URL.createObjectURL(event.target.files[0]);
+      image.style.setProperty('background-image', "url(" + url + ")");
+    }
+  </script>
 </body>
 
 </html>

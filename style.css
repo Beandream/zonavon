@@ -1,66 +1,64 @@
-
-
-.header {
-  margin: auto;
-  margin-bottom: 1rem;
-  max-width: 35rem;
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 1px 2px, rgba(0, 0, 0, 0.3) 0px 1px 2px -1px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-  padding: 8px;
-  position: relative;
+:root {
+  --image-width: 3in;
+  --image-height: 3in;
+  
+  --scale-factor: calc(1 / 3);
+  --tool-size: 3in;
+  --ruler-size: 0.25in;
+  --ruler-thickness: 1px;
 }
 
-.toggle {
-  position: absolute;
+html {
   height: 100%;
-  top: 0;
-  right: 10px;
-  display: table;
-
+  width: 100%;
 }
 
-.toggle * {
-  display: table-cell;
-  vertical-align: middle;
-  color: var(--text-color);
-  font-size: 32px;
+#output {
+  position: absolute;
+  width: var(--tool-size);
+  height: var(--tool-size);
+  background-color: red;
+  background-image: url("IMG_9480.JPG");
+  background-repeat: repeat;
+  background-size: var(--image-width) var(--image-height);
+  top: var(--ruler-size);
+  left: var(--ruler-size);
 }
 
-#icon-sun {
-  width: 1.5rem;
-  height: 1.5rem;
-  display: none;
-  padding-bottom: 0.5rem;
-  line-height: 0rem;
+#rulers {
+  position: relative;
+  border: var(--ruler-thickness) solid black;
+  width: calc(var(--tool-size) + var(--ruler-size));
+  height: calc(var(--tool-size) + var(--ruler-size));
+  margin-bottom: 12px;
 }
 
-
-#icon-moon {
-  width: 1.5rem;
-  height: 1.5rem;
-  display: none;
-  line-height: 0rem;
+#horizontal-ruler {
+  position: absolute;
+  width: var(--tool-size);
+  height: var(--ruler-size);
+  top: calc(var(--ruler-thickness) * -1);
+  left: var(--ruler-size);
+  background-size: calc(var(--tool-size) * var(--scale-factor)) var(--ruler-size);
+  background-image:
+    linear-gradient(to right, grey var(--ruler-thickness), transparent var(--ruler-thickness)),
+    linear-gradient(to bottom, grey var(--ruler-thickness), transparent var(--ruler-thickness));
 }
 
-.title {
-  display: inline;
+#vertical-ruler {
+  position: absolute;
+  min-width: var(--ruler-size);
+  min-height: var(--tool-size);
+  top:  var(--ruler-size);
+  left: calc(var(--ruler-thickness) * -1);
+  background-size: var(--ruler-size) calc(var(--tool-size) * var(--scale-factor));
+  background-image:
+    linear-gradient(to right, grey var(--ruler-thickness), transparent var(--ruler-thickness)),
+    linear-gradient(to bottom, grey var(--ruler-thickness), transparent var(--ruler-thickness));
 }
 
-.gameTitle {
-  padding-top: 10px;
-  padding-bottom: 0px;
-  margin: 0;
-}
-
-p {
-  margin: 0.5rem;
-}
-
-a {
-  display: inline-block;
-  text-decoration: none;
-}
-
-.game:hover {
-  background-color: var(--fg-color-hover);
+#width, #height {
+  width: 2rem;
+  height: 2rem;
+  text-align: right;
 }
