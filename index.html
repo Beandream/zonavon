@@ -11,24 +11,66 @@
 <body>
   <h3>Fabric Scaling Tool.</h3>
   <div id="rulers">
+    <div id="veiw-scale-options" onclick="changeVeiwScaleOptions()">
+      <span>
+        <label for="12-inch">
+          <input type="radio" id="12-inch" name="scale-options" value="12" checked />
+          12 Inches
+        </label>
+      </span>
+
+      <span>
+        <label for="1-yard">
+          <input type="radio" id="1-yard" name="scale-options" value="36" />
+          1 Yard
+        </label>
+      </span>
+
+      <span>
+        <label for="60-yard">
+          <input type="radio" id="10-yard" name="scale-options" value="360" />
+          10 Yards
+        </label>
+      </span>
+
+    </div>
     <div id="vertical-ruler"></div>
     <div id="horizontal-ruler"></div>
     <div id="output" src=""></div>
   </div>
 
-  <input type="number" onchange="changeScale()" value="3" id="width"/>
-  <input type="number" onchange="changeScale()" value="3" id="height"/>
+  <input type="number" onchange="changeScale()" value="12" id="width"/>
+  <input type="number" onchange="changeScale()" value="12" id="height"/>
 
   <input type="file" onchange="displayImage()" />
 
   <script>
+    var scaleFactor = 12;
+    var imageWidth = 12;
+    var imageHeight = 12;
+
+    const rulerSize = 3;
+
+
+    function changeVeiwScaleOptions() {
+      var value = document.querySelector('input[name="scale-options"]:checked').value;
+      scaleFactor = value;
+      setImageScale();
+    }
 
     function changeScale() {
-      width = document.getElementById("width");
-      height = document.getElementById("height");
-      document.documentElement.style.setProperty('--image-width', width.value + 'in');
-      document.documentElement.style.setProperty('--image-height', height.value + "in");
+      imageWidth = document.getElementById("width").value;
+      imageHeight = document.getElementById("height").value;
+      setImageScale();
     }
+
+    function setImageScale() {
+      var width = (imageWidth * rulerSize) / scaleFactor;
+      var height = (imageHeight * rulerSize) / scaleFactor;
+      document.documentElement.style.setProperty('--image-width', width + 'in');
+      document.documentElement.style.setProperty('--image-height', height + "in");
+    }
+    setImageScale();
     
     function displayImage() {
       var image = document.getElementById('output')
