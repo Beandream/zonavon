@@ -39,8 +39,8 @@ function getTodaysPhrase(manualDate) {
   if (manualDate < diffDays && manualDate > -1) diffDays = manualDate;
   dayE.innerHTML = "day " + diffDays;
   currentDay = diffDays;
-  // resetLocalStorage(diffDays)
-  var phrase = commonPhrases[diffDays]
+  var phrase = commonPhrases[diffDays % commonPhrases.length]
+  console.log(diffDays % commonPhrases.length)
   setPhrase(phrase)
   getStorageAttempts()
 }
