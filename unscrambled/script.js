@@ -37,10 +37,12 @@ function getTodaysPhrase(manualDate) {
   const diffTime = (currentDate - targetDate);
   var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   if (manualDate < diffDays && manualDate > -1) diffDays = manualDate;
-  dayE.innerHTML = "day " + diffDays;
   currentDay = diffDays;
+  dayE.innerHTML = "day " + diffDays;
+  if (diffDays > commonPhrases.length) {
+    dayE.innerHTML = "<s>day " + diffDays + "</s> (day " + ((diffDays % commonPhrases.length) + 1) + ")";
+  }
   var phrase = commonPhrases[diffDays % commonPhrases.length]
-  console.log(diffDays % commonPhrases.length)
   setPhrase(phrase)
   getStorageAttempts()
 }
