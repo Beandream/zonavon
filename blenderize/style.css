@@ -1,3 +1,8 @@
+.container {
+    margin: auto;
+    max-width: 600px;
+}
+
 .movesCountText {
     margin-bottom: 1rem;
     padding: 0;
