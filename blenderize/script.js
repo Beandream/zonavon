@@ -29,6 +29,7 @@ class Block {
     }
 
     onclick() {
+        this.moveBlock(0, -1)
         console.log(this);
     }
 
@@ -53,40 +54,21 @@ class Block {
         this.updateElement();
     }
 
-    moveBlock(dir_x, dir_y) {
+    moveBlock(dir_x, dir_y, lastBlock) {
         let otherBlock = this.getBlock(this.x + dir_x, this.y + dir_y);
         if (!otherBlock) return;
         if (otherBlock.completed === true) {
             let x = (dir_x + 1) * dir_x;
             let y = (dir_y + 1) * dir_y;
-            this.moveBlock(x, y);
+            this.moveBlock(x, y, otherBlock);
             return;
         }
-        this.checkMatch(otherBlock);
-    }
-
-    moveLeft() {
-        let aboveBlock = this.getBlock(this.x - 1, this.y);
-        if (!aboveBlock) return;
-        this.checkMatch(aboveBlock, 0);
-    }
-
-    moveUp() {
-        let aboveBlock = this.getBlock(this.x, this.y - 1);
-        if (!aboveBlock) return;
-        this.checkMatch(aboveBlock, 1);
-    }
-
-    moveRight() {
-        let aboveBlock = this.getBlock(this.x + 1, this.y);
-        if (!aboveBlock) return;
-        this.checkMatch(aboveBlock, 2);
-    }
-
-    moveDown() {
-        let aboveBlock = this.getBlock(this.x, this.y + 1);
-        if (!aboveBlock) return;
-        this.checkMatch(aboveBlock, 3);
+        if (lastBlock) {
+            this.swapBlock(lastBlock);
+            lastBlock.checkMatch(otherBlock);
+        } else {
+            this.checkMatch(otherBlock);
+        }
     }
 
     checkMatch(block) {
@@ -156,7 +138,7 @@ function controls(direction) {
                 if (direction === 0) block.moveBlock(-1, 0);
                 if (direction === 1) block.moveBlock(0, -1);
                 if (direction === 2) block.moveBlock(1, 0);
-                if (direction === 3) block.moveBlocl(0, 1);
+                if (direction === 3) block.moveBlock(0, 1);
             });
         });
 
