@@ -58,6 +58,5 @@
     border-radius: 0.5rem;
     align-content: center;
     font-size: xx-large;
-    background: radial-gradient(ellipse at center, var(--bg-color) 0,var(--color) 100%);
     color: black;
 }

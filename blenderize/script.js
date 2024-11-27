@@ -30,8 +30,9 @@ class Block {
     }
 
     onclick() {
-        this.moveUp();
-        this.updateElement();
+        // this.moveUp();
+        console.log(this);
+        // this.updateElement();
     }
 
     updateElement() {
