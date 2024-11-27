@@ -38,7 +38,7 @@ function savePreferredColorScheme(scheme){
 }
 
 // Get the current scheme, and apply the opposite
-function toggleColorScheme(){
+function toggleColorScheme(cb){
   let newScheme = "light";
   let scheme = getPreferredColorScheme();
   if (scheme === "light"){
@@ -47,6 +47,7 @@ function toggleColorScheme(){
   
   applyPreferredColorScheme(newScheme);
   savePreferredColorScheme(newScheme);
+  if (cb) cb();
 }
 
 // Apply the chosen color scheme by traversing stylesheet rules, and applying a medium.
